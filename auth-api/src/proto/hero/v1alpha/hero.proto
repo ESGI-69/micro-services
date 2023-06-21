@@ -7,6 +7,7 @@ message Hero {
   int32 id = 2;
   int32 power = 3;
   int32 hp = 4;
+  int32 user_id = 5;
 }
 
 service HeroCRUDService {
@@ -28,6 +29,7 @@ message GetResponse {
 message AddRequest {
   string name = 1;
   int32 power = 2;
+  int32 user_id = 3;
 }
 
 message AddResponse {
@@ -39,6 +41,7 @@ message UpdateRequest {
   string name = 2;
   int32 power = 3;
   int32 hp = 4;
+  int32 user_id = 5;
 }
 
 message UpdateResponse {

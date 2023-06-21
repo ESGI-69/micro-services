@@ -1,5 +1,6 @@
-import { Controller } from '@nestjs/common';
+import { Controller, Inject } from '@nestjs/common';
 import { AppService } from './app.service';
+import { UserService } from './user/user.service';
 import {
   AddRequest,
   AddResponse,
@@ -16,10 +17,16 @@ import {
 } from './stubs/hero/v1alpha/hero';
 import { GrpcMethod } from '@nestjs/microservices';
 import { Metadata } from '@grpc/grpc-js';
+import { UserModule } from './user/user.module';
+
 @Controller()
 @HeroCRUDServiceControllerMethods()
 export class AppController implements HeroCRUDServiceController {
-  constructor(private readonly appService: AppService) {}
+  constructor(
+    private readonly appService: AppService,
+    @Inject(UserService)
+    private readonly userService: UserService,
+  ) {}
   async get(
     request: GetRequest,
     //metadata?: Metadata
@@ -45,6 +52,7 @@ export class AppController implements HeroCRUDServiceController {
       name: request.name,
       power: request.power,
       hp: request.hp,
+      userId: request.userId,
     });
     return { hero };
   }
@@ -57,10 +65,23 @@ export class AppController implements HeroCRUDServiceController {
     return { hero };
   }
   async add(request: AddRequest): Promise<AddResponse> {
+    const { name, power, userId } = request;
+
+    const user = await this.userService.findUser({ id: `${userId}` }, {});
+
+    console.log('userId', userId);
+
+    console.log('user', user);
+
+    if (!user) {
+      throw new Error('User not found');
+    }
+
     const hero = await this.appService.create({
-      name: request.name,
-      power: request.power,
+      name,
+      power,
       hp: 100,
+      userId,
     });
     return { hero };
   }

@@ -10,6 +10,7 @@ export interface Hero {
   id?: number;
   power?: number;
   hp?: number;
+  userId?: number;
 }
 
 export interface GetRequest {
@@ -24,6 +25,7 @@ export interface GetResponse {
 export interface AddRequest {
   name?: string;
   power?: number;
+  userId?: number;
 }
 
 export interface AddResponse {
@@ -35,6 +37,7 @@ export interface UpdateRequest {
   name?: string;
   power?: number;
   hp?: number;
+  userId?: number;
 }
 
 export interface UpdateResponse {

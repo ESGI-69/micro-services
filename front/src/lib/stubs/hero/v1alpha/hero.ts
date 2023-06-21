@@ -32,6 +32,10 @@ export interface Hero {
      * @generated from protobuf field: int32 hp = 4;
      */
     hp: number;
+    /**
+     * @generated from protobuf field: int32 user_id = 5;
+     */
+    userId: number;
 }
 /**
  * @generated from protobuf message hero.v1alpha.GetRequest
@@ -67,6 +71,10 @@ export interface AddRequest {
      * @generated from protobuf field: int32 power = 2;
      */
     power: number;
+    /**
+     * @generated from protobuf field: int32 user_id = 3;
+     */
+    userId: number;
 }
 /**
  * @generated from protobuf message hero.v1alpha.AddResponse
@@ -97,6 +105,10 @@ export interface UpdateRequest {
      * @generated from protobuf field: int32 hp = 4;
      */
     hp: number;
+    /**
+     * @generated from protobuf field: int32 user_id = 5;
+     */
+    userId: number;
 }
 /**
  * @generated from protobuf message hero.v1alpha.UpdateResponse
@@ -132,11 +144,12 @@ class Hero$Type extends MessageType<Hero> {
             { no: 1, name: "name", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
             { no: 2, name: "id", kind: "scalar", T: 5 /*ScalarType.INT32*/ },
             { no: 3, name: "power", kind: "scalar", T: 5 /*ScalarType.INT32*/ },
-            { no: 4, name: "hp", kind: "scalar", T: 5 /*ScalarType.INT32*/ }
+            { no: 4, name: "hp", kind: "scalar", T: 5 /*ScalarType.INT32*/ },
+            { no: 5, name: "user_id", kind: "scalar", T: 5 /*ScalarType.INT32*/ }
         ]);
     }
     create(value?: PartialMessage<Hero>): Hero {
-        const message = { name: "", id: 0, power: 0, hp: 0 };
+        const message = { name: "", id: 0, power: 0, hp: 0, userId: 0 };
         globalThis.Object.defineProperty(message, MESSAGE_TYPE, { enumerable: false, value: this });
         if (value !== undefined)
             reflectionMergePartial<Hero>(this, message, value);
@@ -158,6 +171,9 @@ class Hero$Type extends MessageType<Hero> {
                     break;
                 case /* int32 hp */ 4:
                     message.hp = reader.int32();
+                    break;
+                case /* int32 user_id */ 5:
+                    message.userId = reader.int32();
                     break;
                 default:
                     let u = options.readUnknownField;
@@ -183,6 +199,9 @@ class Hero$Type extends MessageType<Hero> {
         /* int32 hp = 4; */
         if (message.hp !== 0)
             writer.tag(4, WireType.Varint).int32(message.hp);
+        /* int32 user_id = 5; */
+        if (message.userId !== 0)
+            writer.tag(5, WireType.Varint).int32(message.userId);
         let u = options.writeUnknownFields;
         if (u !== false)
             (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
@@ -299,11 +318,12 @@ class AddRequest$Type extends MessageType<AddRequest> {
     constructor() {
         super("hero.v1alpha.AddRequest", [
             { no: 1, name: "name", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
-            { no: 2, name: "power", kind: "scalar", T: 5 /*ScalarType.INT32*/ }
+            { no: 2, name: "power", kind: "scalar", T: 5 /*ScalarType.INT32*/ },
+            { no: 3, name: "user_id", kind: "scalar", T: 5 /*ScalarType.INT32*/ }
         ]);
     }
     create(value?: PartialMessage<AddRequest>): AddRequest {
-        const message = { name: "", power: 0 };
+        const message = { name: "", power: 0, userId: 0 };
         globalThis.Object.defineProperty(message, MESSAGE_TYPE, { enumerable: false, value: this });
         if (value !== undefined)
             reflectionMergePartial<AddRequest>(this, message, value);
@@ -319,6 +339,9 @@ class AddRequest$Type extends MessageType<AddRequest> {
                     break;
                 case /* int32 power */ 2:
                     message.power = reader.int32();
+                    break;
+                case /* int32 user_id */ 3:
+                    message.userId = reader.int32();
                     break;
                 default:
                     let u = options.readUnknownField;
@@ -338,6 +361,9 @@ class AddRequest$Type extends MessageType<AddRequest> {
         /* int32 power = 2; */
         if (message.power !== 0)
             writer.tag(2, WireType.Varint).int32(message.power);
+        /* int32 user_id = 3; */
+        if (message.userId !== 0)
+            writer.tag(3, WireType.Varint).int32(message.userId);
         let u = options.writeUnknownFields;
         if (u !== false)
             (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
@@ -402,11 +428,12 @@ class UpdateRequest$Type extends MessageType<UpdateRequest> {
             { no: 1, name: "id", kind: "scalar", T: 5 /*ScalarType.INT32*/ },
             { no: 2, name: "name", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
             { no: 3, name: "power", kind: "scalar", T: 5 /*ScalarType.INT32*/ },
-            { no: 4, name: "hp", kind: "scalar", T: 5 /*ScalarType.INT32*/ }
+            { no: 4, name: "hp", kind: "scalar", T: 5 /*ScalarType.INT32*/ },
+            { no: 5, name: "user_id", kind: "scalar", T: 5 /*ScalarType.INT32*/ }
         ]);
     }
     create(value?: PartialMessage<UpdateRequest>): UpdateRequest {
-        const message = { id: 0, name: "", power: 0, hp: 0 };
+        const message = { id: 0, name: "", power: 0, hp: 0, userId: 0 };
         globalThis.Object.defineProperty(message, MESSAGE_TYPE, { enumerable: false, value: this });
         if (value !== undefined)
             reflectionMergePartial<UpdateRequest>(this, message, value);
@@ -428,6 +455,9 @@ class UpdateRequest$Type extends MessageType<UpdateRequest> {
                     break;
                 case /* int32 hp */ 4:
                     message.hp = reader.int32();
+                    break;
+                case /* int32 user_id */ 5:
+                    message.userId = reader.int32();
                     break;
                 default:
                     let u = options.readUnknownField;
@@ -453,6 +483,9 @@ class UpdateRequest$Type extends MessageType<UpdateRequest> {
         /* int32 hp = 4; */
         if (message.hp !== 0)
             writer.tag(4, WireType.Varint).int32(message.hp);
+        /* int32 user_id = 5; */
+        if (message.userId !== 0)
+            writer.tag(5, WireType.Varint).int32(message.userId);
         let u = options.writeUnknownFields;
         if (u !== false)
             (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);

@@ -16,4 +16,5 @@ model Hero {
   name      String
   power     Int
   hp        Int
+  userId    Int    @map("user_id")
 }
