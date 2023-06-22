@@ -7,10 +7,19 @@ import { PrismaService } from './prisma.service';
 import { UserModule } from './user/user.module';
 import { ConfigModule } from '@nestjs/config';
 import { envSchema } from './config/env';
+import { ConfigService } from '@nestjs/config';
 
 @Module({
   imports: [
-    GrpcReflectionModule.register(grpcConfig),
+    ConfigModule.forRoot({
+      ignoreEnvFile: process.env.NODE_ENV === 'production',
+      validationSchema: envSchema,
+    }),
+    GrpcReflectionModule.registerAsync({
+      imports: [ConfigModule],
+      useFactory: (cs: ConfigService) => grpcConfig(cs),
+      inject: [ConfigService],
+    }),
     UserModule,
     ConfigModule.forRoot({
       ignoreEnvFile: process.env.NODE_ENV === 'production',
