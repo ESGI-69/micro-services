@@ -28,3 +28,5 @@ plugins:
       - addGrpcMetadata=true
       - nestJs=true
       - useOptionals=all
+  - plugin: buf.build/community/timostamm-protobuf-ts
+    out: ../svelte/src/lib/stubs
