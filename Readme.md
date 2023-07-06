@@ -81,11 +81,41 @@ USER_API_URL=localhost:4000
 
 ## Start the servers
 
+From the root of the project
+
+```bash
+docker compose up -d mariadb mongo tracing
+```
+
+```bash
+cd auth-api
+npx prisma migrate dev
+```
+
+```bash
+cd user-api
+npx prisma migrate dev
+```
+
 ```bash
 docker compose up -d
+```
+
+```bash
+cd svelte
+npm install
+npm run dev
+```
+
+```bash
+cd nest
+npm install
+npx prisma migrate dev
+npm run start:dev
 ```
 
 | **Name**         | **Url**                |
 |------------------|------------------------|
 | project          | http://localhost:4000  |
 | observability ui | http://localhost:16686 |
+| front svelte     | http://localhost:5173/ |
