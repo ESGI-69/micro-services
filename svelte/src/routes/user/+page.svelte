@@ -1,3 +1,18 @@
+<script lang="ts">
+	async function handleSubmit(event: Event) {
+		const data: any = {};
+		new FormData(event.target as HTMLFormElement).forEach((value, key) => (data[key] = value));
+		const response = await fetch('/user', {
+			method: 'post',
+			body: JSON.stringify(data)
+		});
+		if (response.ok) {
+			const data = await response.json();
+			console.log({ data });
+		}
+	}
+</script>
+
 <div class="flex flex-col justify-center min-h-full px-6 py-12 lg:px-8">
 	<div class="sm:mx-auto sm:w-full sm:max-w-sm">
 		<h2 class="mt-10 text-2xl font-bold leading-9 tracking-tight text-center text-gray-900">
@@ -5,7 +20,7 @@
 		</h2>
 	</div>
 	<div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-		<form class="space-y-6">
+    <form class="space-y-6" on:submit|preventDefault={handleSubmit}>
 			<div>
 				<label for="email" class="block text-sm font-medium leading-6 text-gray-900"
 					>Email address</label
